@@ -32,6 +32,6 @@ struct CurriculumItemCell: View {
       router.push(.lesson(songInfo: songInfo))
     }
     .accessibilityElement(children: .ignore)
-    .accessibilityLabel("\(songInfo.level) \(songInfo.title) 학습하기 버튼")
+    .accessibilityLabel("\(songInfo.level) \(songInfo.title) start learning button")
   }
 }

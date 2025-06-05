@@ -11,7 +11,7 @@ struct HomeView: View {
     ) { _, _ in
       VStack {
         // MARK: Toolbar
-        Toolbar(title: "Guita", accessibilityText: "귀로 치는 기타, 귀타가 시작되었습니다. 기타 학습을 시작하기 위해서는 기타 학습 버튼을 눌러주십시오.", isPopButton: false, trailing: {
+        Toolbar(title: "Guita", accessibilityText: "Guita, the guitar you play with your ears, has begun. To start learning, please press the ‘Start Learning Guitar’ button", isPopButton: false, trailing: {
           // MARK: Dev Button
           Text("Dev")
             .opacity(0.01)
@@ -28,7 +28,7 @@ struct HomeView: View {
               .resizable()
               .frame(width: 47, height: 54)
               .padding(.bottom, 43)
-            Text("기타 학습")
+            Text("Start Learning Guitar")
               .fontKoddi(32, color: .light, weight: .bold)
           }.offset(y: -80)
             .frame(maxWidth: .infinity, maxHeight: .infinity)

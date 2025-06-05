@@ -36,7 +36,7 @@ final class SectionLessonViewModel: BaseViewModel<SectionLessonViewState> {
   }
 
   /// 구간 반복 시작
-  func play(isRetry: Bool = false) {
+  func play(isRetry _: Bool = false) {
     cancelPlayTask()
     playTask = Task {
       do {
@@ -46,7 +46,7 @@ final class SectionLessonViewModel: BaseViewModel<SectionLessonViewState> {
         let stepNumber = currentStep.step
         let totalSteps = state.steps.count
 
-        await textToSpeechManager.speak("총 \(totalSteps) 단게 중 \(stepNumber) 단계")
+        await textToSpeechManager.speak("Step \(stepNumber) of \(totalSteps) total steps")
 
         for lessonInfo in currentStep.sectionLessonInfo {
           try Task.checkCancellation()
@@ -56,13 +56,13 @@ final class SectionLessonViewModel: BaseViewModel<SectionLessonViewState> {
           try Task.checkCancellation()
           if let audioFile = currentStep.audioFile {
             // 구간 반복 오디오 속도 설정
-            AudioPlayerManager.shared.setPlaybackRate(0.8)
+            AudioPlayerManager.shared.setPlaybackRate(0.75)
             await AudioPlayerManager.shared.start(audioFile: audioFile)
           }
         }
-        if !isRetry {
-          await textToSpeechManager.speak(currentStep.featureDescription)
-        }
+//        if !isRetry {
+//          await textToSpeechManager.speak(currentStep.featureDescription)
+//        }
       } catch {
         textToSpeechManager.stop()
         AudioPlayerManager.shared.stop()

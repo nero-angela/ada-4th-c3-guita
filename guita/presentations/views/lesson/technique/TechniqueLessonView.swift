@@ -12,18 +12,18 @@ struct TechniqueLessonView: View {
       ) { viewModel, state in
         VStack {
           // MARK: Toolbar
-          Toolbar(title: "주법 학습", accessibilityText: "주법을 학습하는 화면입니다. 학습을 시작하고자 하시는 재생버튼을 눌러주세요.", trailing: {
+          Toolbar(title: "Technique Lesson", accessibilityText: "This is the screen for learning techniques. Press the play button to start learning.", trailing: {
             IconButton("info", color: .light, isSystemImage: false) {
               router.push(.techniqueLessonGuide)
             }.accessibilityAddTraits(.isButton)
-              .accessibilityLabel("사용법 도움말")
+              .accessibilityLabel("Usage Guide")
 
           })
 
           Spacer()
 
           // MARK: Step/TotalStep
-          Text("\(state.currentStep.step)/\(state.currentStep.totalSteps) 단계")
+          Text("\(state.currentStep.step)/\(state.currentStep.totalSteps) Steps")
             .fontKoddi(22, color: .darkGrey, weight: .regular)
             .accessibilityHidden(true)
 
@@ -45,7 +45,6 @@ struct TechniqueLessonView: View {
           .accessibilityHidden(true)
 
           // MARK: Button(back/play/next)
-
           HStack {
             let isFirstStep = (state.currentStepIndex == 0)
             Button(action: {
@@ -59,7 +58,7 @@ struct TechniqueLessonView: View {
                 .padding(.trailing, 42)
             }
             .accessibilityAddTraits(.isButton)
-            .accessibilityLabel(isFirstStep ? "이전(비활성화)" : "이전")
+            .accessibilityLabel(isFirstStep ? "Previous (Disabled)" : "Previous")
             .opacity(isFirstStep ? 0.5 : 1.0)
             .accessibilityAddTraits([.isButton, .startsMediaSession])
 
@@ -68,7 +67,7 @@ struct TechniqueLessonView: View {
                 .resizable()
                 .frame(width: 95, height: 95)
             }.accessibilityAddTraits(.isButton)
-              .accessibilityLabel("재생")
+              .accessibilityLabel("Play")
               .accessibilityAddTraits([.isButton, .startsMediaSession])
 
             Button(action: {
@@ -80,7 +79,7 @@ struct TechniqueLessonView: View {
                 .padding(.leading, 42)
             }
             .accessibilityAddTraits(.isButton)
-            .accessibilityLabel("다음")
+            .accessibilityLabel("Next")
             .accessibilityAddTraits([.isButton, .startsMediaSession])
           }
         }.padding(.bottom, 5)

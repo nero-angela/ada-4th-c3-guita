@@ -55,39 +55,39 @@ extension SubPage {
   var title: String {
     switch self {
     case .curriculum:
-      return "학습 목록"
+      return "Curriculum"
     case let .lesson(songInfo):
       return "\(songInfo.level)"
     case .chord:
-      return "코드 학습"
+      return "Chord Learning"
     case let .chordLesson(songInfo):
-      return "\(songInfo.chord)코드"
+      return "\(songInfo.chord) Chord"
     case .chordLessonGuide:
-      return "코드 학습 도움말"
+      return "Chord Learning Guide"
     case .techniqueLesson:
-      return "주법 학습"
+      return "Technique Learning"
     case .techniqueLessonGuide:
-      return "주법 학습 도움말"
+      return "Technique Learning Guide"
     case .sectionLesson:
-      return "곡 구간 학습 "
+      return "Section Learning"
     case .sectionLessonGuide:
-      return "곡 구간 학습 도움말"
+      return "Section Learning Guide"
     case let .fullLesson(songInfo):
-      return "\(songInfo.title) 곡 전체 학습"
+      return "\(songInfo.title) Full Song Learning"
     case .fullLessonGuide:
-      return "곡 전체 학습 도움말"
+      return "Full Song Learning Guide"
     case .dev:
-      return "개발"
+      return "Development"
     case .devNoteClassification:
-      return "노트 분류"
+      return "Note Classification"
     case .devCodeClassification:
-      return "코드 분류"
+      return "Chord Classification"
     case .devVoiceCommand:
-      return "음성 명령"
+      return "Voice Command"
     case .devConfig:
-      return "설정"
+      return "Configuration"
     case .devPermission:
-      return "권한"
+      return "Permissions"
     case .devTextToSpeech:
       return "TTS"
     }

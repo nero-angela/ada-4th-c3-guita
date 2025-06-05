@@ -14,7 +14,7 @@ struct ChordView: View {
     ) { _, state in
       VStack(spacing: 0) {
         // MARK: Toolbar
-        Toolbar(title: "코드 학습", accessibilityText: "\(state.songInfo.chords) 를 배우는 화면입니다. 기타를 들고 배우고 싶은 코드를 선택해 주세요.")
+        Toolbar(title: "Chord Lesson", accessibilityText: "This screen is for learning \(state.songInfo.chords). Please pick the chord you want to learn with your guitar.")
 
         // MARK: Chord Button
         ListDivider()
@@ -22,13 +22,13 @@ struct ChordView: View {
         ForEach(state.songInfo.chords, id: \.self) { chord in
           Button(action: { router.push(.chordLesson(chord: chord, chords: state.songInfo.chords)) }) {
             VStack {
-              Text("\(chord.rawValue) 코드")
+              Text("\(chord.rawValue) Chord")
                 .fontKoddi(26, color: .darkGrey, weight: .bold)
                 .padding(.vertical, 36)
             }
             .frame(maxWidth: .infinity)
           }
-          .accessibilityLabel("\(chord.rawValue) 코드 학습하기")
+          .accessibilityLabel("Learn \(chord.rawValue) chord")
           .accessibilityAddTraits(.isButton)
 
           ListDivider()

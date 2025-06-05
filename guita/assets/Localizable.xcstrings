@@ -56,7 +56,18 @@
         }
       }
     },
+    "%@ %@ start learning button" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@ start learning button"
+          }
+        }
+      }
+    },
     "%@ %@ 학습하기 버튼" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -72,7 +83,21 @@
         }
       }
     },
+    "%@ Chord" : {
+
+    },
+    "%@ header, %@" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ header, %2$@"
+          }
+        }
+      }
+    },
     "%@ 머릿말, %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -89,6 +114,7 @@
       }
     },
     "%@ 코드" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -99,6 +125,7 @@
       }
     },
     "%@ 코드 학습하기" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -134,7 +161,38 @@
         }
       }
     },
+    "%lld/%lld Step" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld/%2$lld Step"
+          }
+        }
+      }
+    },
+    "%lld/%lld steps" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld/%2$lld steps"
+          }
+        }
+      }
+    },
+    "%lld/%lld Steps" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld/%2$lld Steps"
+          }
+        }
+      }
+    },
     "%lld/%lld 단계" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -159,6 +217,9 @@
           }
         }
       }
+    },
+    "Chord Lesson" : {
+
     },
     "Chord Throttle Interval" : {
       "localizations" : {
@@ -200,6 +261,9 @@
         }
       }
     },
+    "Fast" : {
+
+    },
     "Features" : {
       "localizations" : {
         "en" : {
@@ -209,6 +273,12 @@
           }
         }
       }
+    },
+    "First button, Go back to the %@" : {
+
+    },
+    "Full Song Lesson" : {
+
     },
     "Full Track Play Speed" : {
       "localizations" : {
@@ -240,6 +310,9 @@
         }
       }
     },
+    "Help Guide" : {
+
+    },
     "History" : {
       "localizations" : {
         "en" : {
@@ -249,6 +322,12 @@
           }
         }
       }
+    },
+    "Learn %@ chord" : {
+
+    },
+    "Next" : {
+
     },
     "Note Throttle Interval" : {
       "localizations" : {
@@ -270,6 +349,33 @@
         }
       }
     },
+    "Pause" : {
+
+    },
+    "Play" : {
+
+    },
+    "Play %@" : {
+
+    },
+    "Previous" : {
+
+    },
+    "Previous (disabled)" : {
+
+    },
+    "Previous (Disabled)" : {
+
+    },
+    "Replay" : {
+
+    },
+    "Section Lesson" : {
+
+    },
+    "Slow" : {
+
+    },
     "Speech To Text" : {
       "localizations" : {
         "en" : {
@@ -279,6 +385,27 @@
           }
         }
       }
+    },
+    "Start chord lesson" : {
+
+    },
+    "Start full song lesson" : {
+
+    },
+    "Start Learning Guitar" : {
+
+    },
+    "Start section lesson" : {
+
+    },
+    "Start technique lesson" : {
+
+    },
+    "Table of Contents" : {
+
+    },
+    "Technique Lesson" : {
+
     },
     "TTS Speed" : {
       "localizations" : {
@@ -290,7 +417,11 @@
         }
       }
     },
+    "Usage Guide" : {
+
+    },
     "곡 구간 학습" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -311,6 +442,7 @@
       }
     },
     "곡 구간 학습하기" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -341,6 +473,7 @@
       }
     },
     "곡 전체 학습" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -361,6 +494,7 @@
       }
     },
     "곡 전체 학습하기" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -391,6 +525,7 @@
       }
     },
     "기타 학습" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -431,6 +566,7 @@
       }
     },
     "느리게" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -441,6 +577,7 @@
       }
     },
     "다시 듣기" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -451,6 +588,7 @@
       }
     },
     "다음" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -481,6 +619,7 @@
       }
     },
     "목차" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -491,6 +630,7 @@
       }
     },
     "빠르게" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -501,6 +641,7 @@
       }
     },
     "사용법 도움말" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -569,6 +710,9 @@
           }
         }
       }
+    },
+    "앱 로딩 중..." : {
+
     },
     "올바른 소리 효과음 재생" : {
       "localizations" : {
@@ -691,6 +835,7 @@
       }
     },
     "이전" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -701,6 +846,7 @@
       }
     },
     "이전 (비활성화)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -711,6 +857,7 @@
       }
     },
     "이전(비활성화)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -721,6 +868,7 @@
       }
     },
     "일시정지" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -731,6 +879,7 @@
       }
     },
     "재생" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -761,6 +910,7 @@
       }
     },
     "주법 학습" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -791,6 +941,7 @@
       }
     },
     "주법 학습하기" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -817,6 +968,7 @@
       }
     },
     "코드 학습" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -877,6 +1029,7 @@
       }
     },
     "코드 학습하기" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

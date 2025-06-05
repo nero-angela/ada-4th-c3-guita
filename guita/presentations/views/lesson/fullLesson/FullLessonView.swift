@@ -11,20 +11,20 @@ struct FullLessonView: View {
       create: { FullLessonViewModel(router, songInfo) }
     ) { viewModel, state in
       PermissionView(
-        permissionListener: { _ in
-//          if isGranted {
-//            viewModel.onPermissionGranted()
-//          }
+        permissionListener: { isGranted in
+          if isGranted {
+            viewModel.onPermissionGranted()
+          }
         }
       ) {
         VStack(spacing: 0) {
           // MARK: Toolbar
-          Toolbar(title: "곡 전체 학습", trailing: {
+          Toolbar(title: "Full Song Lesson", accessibilityText: "Let’s play along with the full song. To start the lesson, please say play.", trailing: {
             IconButton("info", color: .light, isSystemImage: false) {
               router.push(.fullLessonGuide)
 
             }.accessibilityAddTraits(.isButton)
-              .accessibilityLabel("사용법 도움말")
+              .accessibilityLabel("Help Guide")
           })
 
           // MARK: Full Song description
@@ -57,11 +57,11 @@ struct FullLessonView: View {
           Button(action: {
             viewModel.setCurrentTime(0)
           }) {
-            Text("다시 듣기")
+            Text("Replay")
               .fontKoddi(26, color: .darkGrey, weight: .bold)
           }
           .accessibilityAddTraits(.isButton)
-          .accessibilityLabel("다시 듣기")
+          .accessibilityLabel("Replay")
 
           Spacer()
 
@@ -72,7 +72,7 @@ struct FullLessonView: View {
               viewModel.decreasePlaybackRate()
             }
             .accessibilityAddTraits(.isButton)
-            .accessibilityLabel("느리게")
+            .accessibilityLabel("Slow")
 
             Spacer()
 
@@ -85,7 +85,7 @@ struct FullLessonView: View {
               }
             }
             .accessibilityAddTraits(.isButton)
-            .accessibilityLabel(state.playerState.isPlaying ? "일시정지" : "재생")
+            .accessibilityLabel(state.playerState.isPlaying ? "Pause" : "Play")
 
             Spacer()
 
@@ -94,7 +94,7 @@ struct FullLessonView: View {
               viewModel.increasePlaybackRate()
             }
             .accessibilityAddTraits(.isButton)
-            .accessibilityLabel("빠르게")
+            .accessibilityLabel("Fast")
           }
           .padding(.horizontal, 32)
         }

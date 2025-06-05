@@ -2,8 +2,8 @@
 
 enum ChordLessonStep: Equatable {
   case introduction
-  case lineFingering(nString: Int, nFret: Int, nFinger: Int)
-  case lineSoundCheck(nString: Int, nFret: Int, nFinger: Int)
+  case lineFingering(nString: Int, nFret: Int, nFinger: Int, coordIdx: Int)
+  case lineSoundCheck(nString: Int, nFret: Int, nFinger: Int, coordIdx: Int)
   case chordFingering
   case chordSoundCheck
   case finish
@@ -25,17 +25,17 @@ enum ChordLessonStep: Equatable {
   func getDescription(_ chord: Chord, index _: Int) -> String {
     switch self {
     case .introduction:
-      return "\(chord.rawValue) 코드 개요"
-    case let .lineFingering(nString, _, _):
-      return "\(chord.rawValue) 코드 \(nString.koOrd) 줄 운지법 설명"
-    case let .lineSoundCheck(nString, _, _):
-      return "\(chord.rawValue) 코드 \(nString.koOrd) 줄 소리 확인"
+      return "\(chord.rawValue) Chord Overview"
+    case let .lineFingering(nString, _, _, _):
+      return "\(chord.rawValue) Chord Fingering Explanation for String \(nString.koOrd)"
+    case let .lineSoundCheck(nString, _, _, _):
+      return "\(chord.rawValue) Chord Sound Check for String \(nString.koOrd)"
     case .chordFingering:
-      return "\(chord.rawValue) 코드 운지법 설명"
+      return "\(chord.rawValue) Chord Fingering Explanation"
     case .chordSoundCheck:
-      return "\(chord.rawValue) 코드 소리 확인"
+      return "\(chord.rawValue) Chord Sound Check"
     case .finish:
-      return "\(chord.rawValue) 코드 학습 종료"
+      return "\(chord.rawValue) Chord Lesson Complete"
     }
   }
 }

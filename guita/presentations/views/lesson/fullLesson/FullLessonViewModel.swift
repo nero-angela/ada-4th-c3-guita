@@ -47,7 +47,7 @@ final class FullLessonViewModel: BaseViewModel<FullLessonViewState> {
   func play() {
     Task {
       // 시작 전 속도 설정
-      audioPlayerManager.setPlaybackRate(0.75)
+      audioPlayerManager.setPlaybackRate(0.85)
       await audioPlayerManager.start(audioFile: state.songInfo.fullSong)
     }
   }
@@ -96,6 +96,8 @@ final class FullLessonViewModel: BaseViewModel<FullLessonViewState> {
         }),
         VoiceCommand(keyword: .retry, handler: { self.play() }),
         VoiceCommand(keyword: .stop, handler: pause),
+        VoiceCommand(keyword: .fast, handler: increasePlaybackRate),
+        VoiceCommand(keyword: .slow, handler: decreasePlaybackRate),
       ]
     )
   }

@@ -4,7 +4,6 @@ import SwiftUI
 
 final class Router: BaseViewModel<RouterViewState> {
   private var lastNavigationTime: Date = .distantPast
-  private let navigationThreshold: TimeInterval = 1.0
 
   init() {
     super.init(state: RouterViewState(
@@ -32,11 +31,10 @@ final class Router: BaseViewModel<RouterViewState> {
 
   /// Push to sub page list
   func push(_ subPage: SubPage) {
-    let now = Date()
-    guard now.timeIntervalSince(lastNavigationTime) > navigationThreshold else {
+    if !state.subPages.isEmpty && state.subPages.last == subPage {
+      print("Prevent duplicate subpage")
       return
     }
-    lastNavigationTime = now
     emit(
       state.copy(subPages: state.subPages + [subPage])
     )

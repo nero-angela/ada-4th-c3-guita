@@ -20,12 +20,12 @@ struct GuideView: View {
 
   var body: some View {
     VStack(spacing: 0) {
-      Toolbar(title: "\(title) 도움말", accessibilityText: "\(title)에 대한 도움말을 들을 수 있습니다.")
+      Toolbar(title: "\(title) Help", accessibilityText: "You can hear help about \(title).")
       ScrollView {
         VStack(alignment: .leading, spacing: 32) {
           // MARK: Table of contents
           VStack(alignment: .leading, spacing: 4) {
-            Text("목차")
+            Text("Table of Contents")
               .fontKoddi(18, color: .light, weight: .bold)
 
             ForEach(Array(sections.enumerated()), id: \.element.id) { index, section in

@@ -10,10 +10,10 @@ struct FullLessonGuideView: View {
       create: { FullLessonGuideViewModel() }
     ) { viewModel, _ in
       GuideView(
-        title: "곡 전체 학습",
+        title: "Full Song Lesson",
         sections: [
           GuideSection(
-            title: "곡 전체 학습",
+            title: "Full Song Lesson Overview",
             content: {
               Text("""
               곡 전체 학습은 제공하는 음성 안내를 통해 곡을 구간별로 학습할 수 있습니다.
@@ -21,7 +21,7 @@ struct FullLessonGuideView: View {
             }
           ),
           GuideSection(
-            title: "음성 명령어 사용법",
+            title: "How to Use Voice Commands",
             content: {
               Text("""
               음성 명령을 통해 코드 학습 화면을 조작할 수 있으며, 사용할 수 있는 음성 명령은 총 3가지가 있습니다.
@@ -35,7 +35,7 @@ struct FullLessonGuideView: View {
             }
           ),
           GuideSection(
-            title: "구간 조절 안내",
+            title: "Section Control Guide",
             content: {
               Text("""
               음원 재생 구간을 조절하고 싶으면 슬라이더가 선택된 상태에서 한손가락으로 원하는 쪽으로 밀면 값이 증가하고, 아래로 쓸어내리면 값이 감소합니다.
@@ -45,7 +45,7 @@ struct FullLessonGuideView: View {
             }
           ),
           GuideSection(
-            title: "속도 조절 안내",
+            title: "Speed Control Guide",
             content: {
               Text("""
               속도 조절 버튼을 통해 재생되는 안내 음성과 멜로디의 속도를 조절할 수 있습니다.
@@ -57,7 +57,7 @@ struct FullLessonGuideView: View {
             }
           ),
           GuideSection(
-            title: "주법 학습 화면 효과음 안내",
+            title: "Technique Lesson Screen Sound Effects Guide",
             content: {
               VStack(alignment: .leading, spacing: 25.2) {
                 Text("""

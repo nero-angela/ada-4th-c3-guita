@@ -4,52 +4,52 @@ extension Int {
   var koOrd: String {
     switch self {
     case 1:
-      return "첫 번째"
+      return "first"
     case 2:
-      return "두 번째"
+      return "second"
     case 3:
-      return "세 번째"
+      return "third"
     case 4:
-      return "네 번째"
+      return "fourth"
     case 5:
-      return "다섯 번째"
+      return "fifth"
     case 6:
-      return "여섯 번째"
+      return "sixth"
     case 7:
-      return "일곱 번째"
+      return "seventh"
     case 8:
-      return "여덟 번째"
+      return "eighth"
     case 9:
-      return "아홉 번째"
+      return "ninth"
     case 10:
-      return "열 번째"
+      return "tenth"
     default:
-      return "\(self)번째"
+      return "\(self)th"
     }
   }
 
   var koCard: String {
     switch self {
     case 1:
-      return "하나"
+      return "one"
     case 2:
-      return "둘"
+      return "two"
     case 3:
-      return "셋"
+      return "three"
     case 4:
-      return "넷"
+      return "four"
     case 5:
-      return "다섯"
+      return "five"
     case 6:
-      return "여섯"
+      return "six"
     case 7:
-      return "일곱"
+      return "seven"
     case 8:
-      return "여덟"
+      return "eight"
     case 9:
-      return "아홉"
+      return "nine"
     case 10:
-      return "열"
+      return "ten"
     default:
       return "\(self)"
     }

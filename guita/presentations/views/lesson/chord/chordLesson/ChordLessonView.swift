@@ -20,15 +20,15 @@ struct ChordLessonView: View {
       ) {
         VStack(spacing: 0) {
           // MARK: Toolbar
-          Toolbar(title: "\(state.chord.rawValue) 코드", accessibilityText: "\(state.chord.rawValue) 코드를 학습하는 화면입니다. 학습을 시작하고자 하시면 재생이라고 말해주세요.", trailing: {
+          Toolbar(title: "\(state.chord.rawValue) Chord", accessibilityText: "This screen is for learning the \(state.chord.rawValue) chord. To start the lesson, please say play.", trailing: {
             IconButton("info") {
               router.push(.chordLessonGuide)
             }.accessibilityAddTraits(.isButton)
-              .accessibilityLabel("사용법 도움말")
+              .accessibilityLabel("Help Guide")
           })
 
           // MARK: Index
-          Text("\(state.index + 1)/\(state.totalStep) 단계")
+          Text("\(state.index + 1)/\(state.totalStep) steps")
             .fontKoddi(22, color: .darkGrey)
             .padding(.top, 16)
             .accessibilityHidden(true)
@@ -48,19 +48,19 @@ struct ChordLessonView: View {
             IconButton("chevron-left", color: .light, size: 95, disabled: state.step == .introduction) {
               viewModel.goPrevious()
             }.accessibilityAddTraits(.isButton)
-              .accessibilityLabel(state.step == .introduction ? "이전 (비활성화)" : "이전")
+              .accessibilityLabel(state.step == .introduction ? "Previous (disabled)" : "Previous")
               .accessibilityAddTraits([.isButton, .startsMediaSession])
 
             IconButton("play", color: .accent, size: 95) {
               viewModel.play()
             }.accessibilityAddTraits(.isButton)
-              .accessibilityLabel("\(state.description) 재생")
+              .accessibilityLabel("Play \(state.description)")
               .accessibilityAddTraits([.isButton, .startsMediaSession])
 
             IconButton("chevron-right", size: 95) {
               viewModel.goNext()
             }.accessibilityAddTraits(.isButton)
-              .accessibilityLabel(viewModel.nextChordAccessibilityLabel)
+              .accessibilityLabel(viewModel.nextChordAccessibilityLabel) // Assuming this is already localized; no change needed if dynamic
               .accessibilityAddTraits([.isButton, .startsMediaSession])
           }
         }

@@ -18,17 +18,17 @@ struct SectionLessonView: View {
       ) {
         VStack(spacing: 0) {
           // MARK: Toolbar
-          Toolbar(title: "곡 구간 학습", accessibilityText: "칼립소 주법을 이용해 곡을 구간으로 나누어 학습할 수 있습니다.", trailing: {
+          Toolbar(title: "Section Lesson", accessibilityText: "Practice breaking a song into sections using calypso strumming. To start the lesson, please say play.", trailing: {
             IconButton("info", color: .light, isSystemImage: false) {
               router.push(.sectionLessonGuide)
             }.accessibilityAddTraits(.isButton)
-              .accessibilityLabel("사용법 도움말")
+              .accessibilityLabel("Help Guide")
           })
           Spacer()
             .aspectRatio(2.5, contentMode: .fit)
 
           // MARK: Index
-          Text("\(state.currentStepIndex + 1)/\(state.steps.count) 단계")
+          Text("\(state.currentStepIndex + 1)/\(state.steps.count) Step")
             .fontKoddi(22, color: .darkGrey)
             .padding(.top, 16)
             .accessibilityHidden(true)
@@ -47,21 +47,21 @@ struct SectionLessonView: View {
             IconButton("chevron-left", size: 95, disabled: state.currentStepIndex == 0) {
               viewModel.previousStep()
             }.accessibilityAddTraits(.isButton)
-              .accessibilityLabel(state.currentStepIndex == 0 ? "이전 (비활성화)" : "이전")
+              .accessibilityLabel(state.currentStepIndex == 0 ? "Previous (Disabled)" : "Previous")
               .accessibilityAddTraits([.isButton, .startsMediaSession])
 
             IconButton("play", color: .accent, size: 95) {
               viewModel.play()
             }
             .accessibilityAddTraits(.isButton)
-            .accessibilityLabel("재생")
+            .accessibilityLabel("Play")
             .accessibilityAddTraits([.isButton, .startsMediaSession])
 
             IconButton("chevron-right", size: 95, disabled: state.currentStepIndex == state.steps.count - 1) {
               viewModel.nextStep()
             }
             .accessibilityAddTraits(.isButton)
-            .accessibilityLabel("다음")
+            .accessibilityLabel("Next")
             .accessibilityAddTraits([.isButton, .startsMediaSession])
           }
         }

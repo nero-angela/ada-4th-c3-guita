@@ -71,8 +71,8 @@ enum Chord: String, CaseIterable, CustomStringConvertible {
 
   var description: String {
     let name = rawValue
-      .replacingOccurrences(of: "m", with: " 마이너")
-      .replacingOccurrences(of: "7", with: " 세븐")
+      .replacingOccurrences(of: "m", with: " Minor")
+      .replacingOccurrences(of: "7", with: " Seven")
     return name
   }
 }

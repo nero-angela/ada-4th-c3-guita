@@ -26,7 +26,7 @@ final class TextToSpeechManager: BaseViewModel<TextToSpeechState>, AVSpeechSynth
     }
   }
 
-  func speak(_ text: String, language: String = "ko-KR", rate: Float? = nil) async {
+  func speak(_ text: String, language: String = "en-US", rate: Float? = nil) async {
     stop()
     if text.isEmpty { return }
     await withTaskCancellationHandler(operation: {

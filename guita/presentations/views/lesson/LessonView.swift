@@ -12,7 +12,7 @@ struct LessonView: View {
     ) { _, _ in
       VStack {
         // MARK: Toolbar
-        Toolbar(title: songInfo.level, accessibilityText: "곡 제목은 \(songInfo.title) 입니다.,\(songInfo.chords)  코드를 사용하는 곡입니다. 코드 학습하기 , 주법 학습하기, 곡 구간별 학습하기, 곡 전체 학습하기 를 할 수 있습니다. 화면을 좌우로 쓸어넘기며 희망하는 학습을 선택해주십시오.")
+        Toolbar(title: songInfo.level, accessibilityText: "The song title is \(songInfo.title), and it uses the chords \(songInfo.chords). You can choose to study chord lessons, technique lessons, section lessons, or the full song lesson. Swipe left or right to select the lesson you want.")
 
         Spacer()
 
@@ -41,42 +41,42 @@ struct LessonView: View {
               Button(action: {
                 router.push(.chord(songInfo: songInfo))
               }) {
-                Text("코드 학습")
+                Text("Chord Lesson")
                   .fontKoddi(26, color: .light, weight: .regular)
                   .frame(width: boxWidth, height: boxHeight)
                   .accessibilityAddTraits(.isButton)
-                  .accessibilityLabel("코드 학습하기")
+                  .accessibilityLabel("Start chord lesson")
               }
               ListDivider()
 
               Button(action: {
                 router.push(.techniqueLesson) // 임시로 라우팅 해둠
               }) {
-                Text("주법 학습")
+                Text("Technique Lesson")
                   .fontKoddi(26, color: .light, weight: .regular)
                   .frame(width: boxWidth, height: boxHeight)
                   .accessibilityAddTraits(.isButton)
-                  .accessibilityLabel("주법 학습하기")
+                  .accessibilityLabel("Start technique lesson")
               }
               ListDivider()
               Button(action: {
                 router.push(.sectionLesson)
               }) {
-                Text("곡 구간 학습")
+                Text("Section Lesson")
                   .fontKoddi(26, color: .light, weight: .regular)
                   .frame(width: boxWidth, height: boxHeight)
                   .accessibilityAddTraits(.isButton)
-                  .accessibilityLabel("곡 구간 학습하기")
+                  .accessibilityLabel("Start section lesson")
               }
               ListDivider()
               Button(action: {
                 router.push(.fullLesson(songInfo: songInfo))
               }) {
-                Text("곡 전체 학습")
+                Text("Full Song Lesson")
                   .fontKoddi(26, color: .light, weight: .regular)
                   .frame(width: boxWidth, height: boxHeight)
                   .accessibilityAddTraits(.isButton)
-                  .accessibilityLabel("곡 전체 학습하기")
+                  .accessibilityLabel("Start full song lesson")
               }
               ListDivider()
             }

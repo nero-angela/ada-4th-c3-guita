@@ -5,12 +5,13 @@ import Foundation
 final class ChordLesson: BaseLesson {
   private let audioPlayerManager = AudioPlayerManager.shared
   private let textToSpeechManager = TextToSpeechManager.shared
-  private let functionText = "다음 학습으로 넘어가시려면 \"다음\"을, 다시 들으시려면 \"다시\"를 말씀해 주세요."
+  private let functionText = "Please say Next to move on to the next lesson. Please say Repeat to listen again."
   private var isNoteClassificationEnabled: Bool = false
   private var isChordClassificationEnabled: Bool = false
   let chord: Chord
   let steps: [ChordLessonStep]
   var totalStep: Int { steps.count }
+  private var coordIdx: Int = 0
 
   init(_ chord: Chord) {
     self.chord = chord
@@ -21,13 +22,13 @@ final class ChordLesson: BaseLesson {
     result.append(.introduction)
 
     // Add lineFingering & lineSoundCheck
-    for lineIndex in chord.coordinates.indices {
-      let coordinate = chord.coordinates[lineIndex]
+    for coordIdx in chord.coordinates.indices {
+      let coordinate = chord.coordinates[coordIdx]
       let nFret = coordinate.0.first!.fret
       let nString = coordinate.0.first!.string
       let nFinger = coordinate.1
-      result.append(.lineFingering(nString: nString, nFret: nFret, nFinger: nFinger))
-      result.append(.lineSoundCheck(nString: nString, nFret: nFret, nFinger: nFinger))
+      result.append(.lineFingering(nString: nString, nFret: nFret, nFinger: nFinger, coordIdx: coordIdx))
+      result.append(.lineSoundCheck(nString: nString, nFret: nFret, nFinger: nFinger, coordIdx: coordIdx))
     }
 
     // Add chord fingering
@@ -48,7 +49,7 @@ final class ChordLesson: BaseLesson {
 
   /// 현재 단계
   private func currentStep(_ isReplay: Bool, _ index: Int) -> String {
-    return isReplay ? "" : "총 \(totalStep.koCard) 단계 중 \((index + 1).koOrd)단계"
+    return isReplay ? "" : "Step \((index + 1).koOrd) of \(totalStep.koCard) steps"
   }
 
   /// Replay에서 읽지 않는 텍스트
@@ -72,20 +73,19 @@ final class ChordLesson: BaseLesson {
       {
         let plets = self.chord.frets.map { $0.koOrd }
         let nFingers = self.chord.nFingers
-        let text = "\(self.chord)코드는 \(plets) 플랫이 사용되고, \(nFingers)개의 손가락을 사용합니다."
+        let text = "\(self.chord) chord uses \(plets) flats and \(nFingers) fingers."
         await self.textToSpeechManager.speak(text)
       },
-
-      // MARK: 기능
-      {
-        let text = self.doNotReplayText(isReplay, self.functionText)
-        await self.textToSpeechManager.speak(text)
-      },
+//      // MARK: 기능
+//      {
+//        let text = self.doNotReplayText(isReplay, self.functionText)
+//        await self.textToSpeechManager.speak(text)
+//      },
     ])
   }
 
   /// 한 줄씩 운지법 설명
-  func startLineFingering(_ isReplay: Bool, index: Int, nString: Int, nFret: Int, nFinger: Int) async {
+  func startLineFingering(_ isReplay: Bool, index: Int, nString: Int, nFret: Int, nFinger: Int, coordIdx _: Int) async {
     isNoteClassificationEnabled = false
     isChordClassificationEnabled = false
     let (fret, string, finger) = (nFret.koOrd, nString.koOrd, nFinger.koOrd)
@@ -98,26 +98,20 @@ final class ChordLesson: BaseLesson {
 
       // MARK: 개요
       {
-        let text = self.doNotReplayText(isReplay, "\(self.chord) 코드를 한 줄씩 잡아봅시다.")
+        let text = self.doNotReplayText(isReplay, "Let’s play the \(self.chord) chord one string at a time")
         await self.textToSpeechManager.speak(text)
       },
 
       // MARK: 운지법 설명
       {
-        let text = "\(fret) 플랫, 아래에서 \(string) 줄을 \(finger) 손가락으로 잡으세요."
-        await self.textToSpeechManager.speak(text)
-      },
-
-      // MARK: 기능
-      {
-        let text = self.doNotReplayText(isReplay, self.functionText)
+        let text = "With your \(finger) finger, press the \(string) string at the \(fret) fret."
         await self.textToSpeechManager.speak(text)
       },
     ])
   }
 
   /// 한 줄씩 사운드 체크
-  func startLineSoundCheck(_ isReplay: Bool, index: Int, nString: Int, nFret: Int, nFinger: Int) async {
+  func startLineSoundCheck(_ isReplay: Bool, index: Int, nString: Int, nFret: Int, nFinger: Int, coordIdx: Int) async {
     isNoteClassificationEnabled = false
     isChordClassificationEnabled = false
     let (fret, string, finger) = (nFret.koOrd, nString.koOrd, nFinger.koOrd)
@@ -130,13 +124,13 @@ final class ChordLesson: BaseLesson {
 
       // MARK: 개요
       {
-        let text = self.doNotReplayText(isReplay, "\(self.chord) 코드 소리를 확인해 봅시다.")
+        let text = self.doNotReplayText(isReplay, "Let’s check the sound of the \(self.chord) chord.")
         await self.textToSpeechManager.speak(text)
       },
 
       // MARK: 운지법 설명
       {
-        let text = "\(fret) 플랫, 아래에서 \(string) 줄을 \(finger) 손가락으로 잡고 \(string) 줄을 튕겼을 때"
+        let text = "If you pluck the \(string) string, it should sound like this."
         await self.textToSpeechManager.speak(text)
       },
 
@@ -152,15 +146,10 @@ final class ChordLesson: BaseLesson {
 
       // MARK: 설명
       {
-        let text = "이런 소리가 들려야 해요. 이제 \(string) 줄을 튕겨볼까요?"
+        let text = "Shall we pluck the \(string) string?"
         await self.textToSpeechManager.speak(text)
+        self.coordIdx = coordIdx
         self.isNoteClassificationEnabled = true
-      },
-
-      // MARK: 기능
-      {
-        let text = self.doNotReplayText(isReplay, self.functionText)
-        await self.textToSpeechManager.speak(text)
       },
     ])
   }
@@ -179,7 +168,7 @@ final class ChordLesson: BaseLesson {
 
       // MARK: 개요
       {
-        let text = self.doNotReplayText(isReplay, "\(self.chord) 코드를 잡아봅시다.")
+        let text = self.doNotReplayText(isReplay, "Let’s grab an \(self.chord) chord.")
         await self.textToSpeechManager.speak(text)
       },
 
@@ -193,16 +182,8 @@ final class ChordLesson: BaseLesson {
           let nString = coordinate.0.first!.string
           let nFinger = coordinate.finger
           let (fret, string, finger) = (nFret.koOrd, nString.koOrd, nFinger.koOrd)
-          text += "\(fret) 프렛, 아래서 \(string) 줄을 \(finger) 손가락으로"
-          if !isLast { text += ", " }
+          text += "With your \(finger) finger, press the \(string) string at the \(fret) fret. "
         }
-        text += "잡아주세요."
-        await self.textToSpeechManager.speak(text)
-      },
-
-      // MARK: 기능
-      {
-        let text = self.doNotReplayText(isReplay, self.functionText)
         await self.textToSpeechManager.speak(text)
       },
     ])
@@ -222,24 +203,13 @@ final class ChordLesson: BaseLesson {
 
       // MARK: 개요
       {
-        let text = self.doNotReplayText(isReplay, "\(self.chord) 코드를 소리를 확인해 봅시다.")
+        let text = self.doNotReplayText(isReplay, "Let’s check the sound of the \(self.chord) chord.")
         await self.textToSpeechManager.speak(text)
       },
 
       // MARK: 설명
       {
-        var text = ""
-        for i in 0 ..< self.chord.coordinates.count {
-          let isLast = i == self.chord.coordinates.count - 1
-          let coordinate = self.chord.coordinates[i]
-          let nFret = coordinate.0.first!.fret
-          let nString = coordinate.0.first!.string
-          let nFinger = coordinate.finger
-          let (fret, string, finger) = (nFret.koOrd, nString.koOrd, nFinger.koOrd)
-          text += "\(fret) 프렛, 아래서 \(string) 줄을 \(finger) 손가락으로"
-          if !isLast { text += ", " }
-        }
-        text += "잡고 위에서 아래로 모든 줄을 피크로 천천히 쓸어내렸을 때"
+        let text = "The \(self.chord) chord should sound like this"
         await self.textToSpeechManager.speak(text)
       },
 
@@ -255,15 +225,9 @@ final class ChordLesson: BaseLesson {
 
       // MARK: 설명
       {
-        let text = "\(self.chord) 코드는 이런 소리가 들려야 해요. 이제 피크로 쓸어내려보세요."
+        let text = "Now, try strumming down with your pick."
         await self.textToSpeechManager.speak(text)
         self.isChordClassificationEnabled = true
-      },
-
-      // MARK: 기능
-      {
-        let text = self.doNotReplayText(isReplay, self.functionText)
-        await self.textToSpeechManager.speak(text)
       },
     ])
   }
@@ -275,13 +239,13 @@ final class ChordLesson: BaseLesson {
     await startLesson([
       // MARK: 단계
       {
-        var text = "\(self.chord)코드 학습이 종료되었습니다."
+        var text = "The \(self.chord) chord lesson has been completed."
         if nextChord != nil {
           // 다음 chord 학습
-          text += " 다음으로 \(nextChord!) 코드를 학습하고 싶으시면 \"다음\"이라고 말씀해 주세요."
+          text += " If you want to learn the \(nextChord!) chord next, please say “Next.”"
         } else {
           // 화면 종료
-          text += " \"다음\"이라고 말씀하시면 이전 \"코드 선택\"화면으로 이동됩니다."
+          text += " If you say “Next,” you will return to the previous “Chord Selection” screen."
         }
         await self.textToSpeechManager.speak(text)
       },
@@ -301,13 +265,12 @@ final class ChordLesson: BaseLesson {
   }
 
   /// Note 분류
-  func onNoteClassified(userNote: Note?, index: Int) {
+  func onNoteClassified(userNote: Note?) {
     if !isNoteClassificationEnabled { return }
     guard let userNote = userNote else { return }
-    let lineIndex = index - 1
-    guard lineIndex >= 0 && lineIndex < chord.notes.count else { return }
-    let note = chord.notes[lineIndex]
-    // Logger.d("Note : \(note), User Note : \(userNote)")
+    guard coordIdx >= 0 && coordIdx < chord.notes.count else { return }
+    let note = chord.notes[coordIdx]
+    Logger.d("Note : \(note), User Note : \(userNote)")
     if note == userNote {
       Task {
         await self.audioPlayerManager.start(audioFile: .answer)
